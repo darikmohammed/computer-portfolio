@@ -20,3 +20,15 @@ code {
   height: 100%;
   background: ivory;
 }
+
+canvas {
+  touch-action: none;
+}
+
+.portfolioSite iframe {
+  width: 1024px;
+  height: 670px;
+  border: none;
+  border-radius: 20px;
+  background: #fff;
+}
