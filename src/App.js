@@ -16,9 +16,9 @@ function App() {
   const { shadowPostion, shadowScale, shadowBlur } = useControls(
     'Computer Shadow',
     {
-      shadowPostion: { value: -1.3, min: -2, max: 2, step: 0.01 },
-      shadowScale: { value: 5, min: 0, max: 50, step: 0.01 },
-      shadowBlur: { value: 2.4, min: 0, max: 10, step: 0.01 },
+      shadowPostion: { value: -1.1, min: -2, max: 2, step: 0.01 },
+      shadowScale: { value: 10.5, min: 0, max: 50, step: 0.01 },
+      shadowBlur: { value: 2.31, min: 0, max: 10, step: 0.01 },
     }
   );
 
@@ -30,6 +30,12 @@ function App() {
     rx: { value: 27.2, min: 0, max: 360, step: 0.01 },
     ry: { value: 10.5, min: 0, max: 360, step: 0.01 },
     rz: { value: 2.33, min: 0, max: 360, step: 0.01 },
+    ix: { value: 0.18, min: -50, max: 50, step: 0.01 },
+    iy: { value: 1.32, min: -50, max: 50, step: 0.01 },
+    iz: { value: 0.09, min: -50, max: 50, step: 0.01 },
+    irx: { value: 0, min: 0, max: 360, step: 0.01 },
+    iry: { value: 0, min: 0, max: 360, step: 0.01 },
+    irz: { value: 0, min: 0, max: 360, step: 0.01 },
   });
 
   const computer = useGLTF(
@@ -41,6 +47,7 @@ function App() {
   return (
     <>
       <color attach="background" args={[backgroundColor]} />
+      {/* <OrbitControls makeDefault /> */}
       <PresentationControls
         global
         rotation={[0.13, 0.1, 0]}
@@ -58,6 +65,7 @@ function App() {
             rotation={[0.1, Math.PI, 0]}
             position={[0, 0.55, -1.15]}
           />
+          {/* mobile  */}
           <primitive
             object={mobile.scene}
             scale={mobile_var.mobileScale}
@@ -68,14 +76,15 @@ function App() {
               transform
               wrapperClass="mobileSite"
               distanceFactor={1.17}
-              position={[0, 1.56, -1.4]}
-              rotation-x={-0.256}
+              position={[mobile_var.ix, mobile_var.iy, mobile_var.iz]}
+              rotation={[mobile_var.irx, mobile_var.iry, mobile_var.irz]}
             >
               <iframe
                 src="https://darikmohammed.github.io/Portfolio/"
                 title="computer"
               ></iframe>
             </Html>
+            {/* Desktop */}
           </primitive>
           <primitive object={computer.scene} position-y={-1.2}>
             <Html
