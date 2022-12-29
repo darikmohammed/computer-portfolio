@@ -32,3 +32,11 @@ canvas {
   border-radius: 20px;
   background: #fff;
 }
+
+.mobileSite iframe {
+  background-color: #fff;
+  width: 414px;
+  height: 896px;
+  border: none;
+  border-radius: 40px;
+}

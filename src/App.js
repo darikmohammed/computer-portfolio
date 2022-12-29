@@ -22,8 +22,21 @@ function App() {
     }
   );
 
+  const mobile_var = useControls('Mobile', {
+    px: { value: 2.5, min: -50, max: 50, step: 0.01 },
+    py: { value: -0.6, min: -50, max: 50, step: 0.01 },
+    pz: { value: 0.14, min: -50, max: 50, step: 0.01 },
+    mobileScale: { value: 0.5, min: -10, max: 10, step: 0.01 },
+    rx: { value: 27.2, min: 0, max: 360, step: 0.01 },
+    ry: { value: 10.5, min: 0, max: 360, step: 0.01 },
+    rz: { value: 2.33, min: 0, max: 360, step: 0.01 },
+  });
+
   const computer = useGLTF(
     'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/macbook/model.gltf'
+  );
+  const mobile = useGLTF(
+    'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/iphone-x/model.gltf'
   );
   return (
     <>
@@ -45,6 +58,25 @@ function App() {
             rotation={[0.1, Math.PI, 0]}
             position={[0, 0.55, -1.15]}
           />
+          <primitive
+            object={mobile.scene}
+            scale={mobile_var.mobileScale}
+            rotation={[mobile_var.rx, mobile_var.ry, mobile_var.rz]}
+            position={[mobile_var.px, mobile_var.py, mobile_var.pz]}
+          >
+            <Html
+              transform
+              wrapperClass="mobileSite"
+              distanceFactor={1.17}
+              position={[0, 1.56, -1.4]}
+              rotation-x={-0.256}
+            >
+              <iframe
+                src="https://darikmohammed.github.io/Portfolio/"
+                title="computer"
+              ></iframe>
+            </Html>
+          </primitive>
           <primitive object={computer.scene} position-y={-1.2}>
             <Html
               transform
@@ -53,7 +85,10 @@ function App() {
               position={[0, 1.56, -1.4]}
               rotation-x={-0.256}
             >
-              <iframe src="https://darikmohammed.github.io/Portfolio/"></iframe>
+              <iframe
+                src="https://darikmohammed.github.io/Portfolio/"
+                title="computer"
+              ></iframe>
             </Html>
           </primitive>
         </Float>
